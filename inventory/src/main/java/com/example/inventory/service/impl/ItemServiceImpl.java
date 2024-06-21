@@ -32,7 +32,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public String register(Item item) throws ItemCodeDuplicateException {
-        return null;
+        itemMapper.insert(item);
+        return item.getCode();
     }
 
 }

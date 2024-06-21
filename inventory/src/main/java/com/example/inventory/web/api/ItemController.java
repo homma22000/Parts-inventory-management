@@ -36,6 +36,7 @@ public class ItemController {
 
 
     public ResponseEntity<Void> register(@Validated @RequestBody Item item) {
-        return null;
+        itemService.register(item);
+        return ResponseEntity.ok().build();
     }
 }
