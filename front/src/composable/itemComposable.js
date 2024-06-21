@@ -9,7 +9,7 @@ export function itemComposable() {
     // 部品の全件取得
     const fetchItems = async () => {
         try {
-            const responce = await fetch(`${baseUrl}/api/items`, {
+            const response = await fetch(`${baseUrl}/api/items`, {
                 headers: {'Accept': 'application/json'}
             });
             items.value = await response.json();

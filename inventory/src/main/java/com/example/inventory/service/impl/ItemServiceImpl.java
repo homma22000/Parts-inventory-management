@@ -22,7 +22,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item getByCode(String code) throws NoSuchItemException {
-        // TODO 未実装
         return null;
     }
 
@@ -33,7 +32,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public String register(Item item) throws ItemCodeDuplicateException {
-        // TODO 未実装
         return null;
     }
 
