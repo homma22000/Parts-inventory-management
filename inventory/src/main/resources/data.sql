@@ -1,0 +1,14 @@
+INSERT INTO items(code, name) VALUES('10010', 'クランクシャフト ロッド');
+INSERT INTO items(code, name) VALUES('10020-A', 'クランクシャフト ベアリング上部ピン');
+INSERT INTO items(code, name) VALUES('10020-B', 'クランクシャフト ベアリング下部ピン');
+INSERT INTO items(code, name) VALUES('10030', 'ピストン');
+INSERT INTO items(code, name) VALUES('10040', 'ピストン・リング');
+INSERT INTO items(code, name) VALUES('10050', 'サークリップ');
+INSERT INTO items(code, name) VALUES('10060', 'カムチェーン・スプロケット');
+INSERT INTO items(code, name) VALUES('10100', 'シリンダー・ヘッド');
+INSERT INTO items(code, name) VALUES('10110', 'ガイド・バルブ');
+INSERT INTO items(code, name) VALUES('10120', 'ガスケット');
+INSERT INTO items(code, name) VALUES('10130', '点火プラグ');
+INSERT INTO items(code, name) VALUES('10140', 'オー・リング');
+INSERT INTO items(code, name) VALUES('10150', 'クランプ');
+INSERT INTO items(code, name) VALUES('10160', 'スクリュー');

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>部品在庫管理システム</title>
+    <base href="/">
+    <link rel="stylesheet" href="./css/common.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/router.js"></script>
+    <script src="/js/inventory-page.js"></script>
+    <script src="/js/item-page.js"></script>
+    <script src="/js/item-detail-page.js"></script>
+    <script src="/js/stocktaking-page.js"></script>
+    <script src="/js/app.js"></script>
+</head>
+<body>
+    <header>
+        <h1>部品在庫管理システム</h1>
+    </header>
+    <nav id="mainMenu">
+        <a href="pages/inventories">在庫管理</a>
+        <a href="pages/items">部品管理</a>
+        <a href="pages/stocktaking">棚卸</a>
+    </nav>
+    <dialog id="messageDialog">
+    </dialog>
+    <main>
+        <section id="inventoryPage">
+            <h1>在庫管理</h1>
+        </section>
+        <section id="itemPage">
+            <h1>部品管理</h1>
+            <form id="itemRegisterForm">
+                <label for="itemCodeField">コード</label>
+                <input id="itemCodeField" type="text">
+                <label for="itemNameField">名称</label>
+                <input id="itemNameField" type="text">
+                <button>登録</button>
+            </form>
+            <hr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>コード</th>
+                        <th>名称</th>
+                    </tr>
+                </thead>
+                <tbody id="itemList">
+                </tbody>
+            </table>
+        </section>
+        <section id="itemDetailPage">
+            <h1 id="itemDetailTitle">部品詳細</h1>
+        </section>
+        <section id="stocktakingPage">
+            <h1>棚卸</h1>
+        </section>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

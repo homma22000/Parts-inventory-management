@@ -1,0 +1,43 @@
+table, td, th {
+    border-collapse: collapse;
+    border: 1px solid #999999;
+}
+
+input:read-only {
+    outline: none;
+    border: none;
+}
+
+.quantity {
+    text-align: right;
+}
+
+.short {
+    color: red;
+    font-weight: bolder;
+}
+
+#messageDialog {
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    height: auto;
+}
+
+#messageDialog.info {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+#messageDialog.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+#messageDialog > p {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
