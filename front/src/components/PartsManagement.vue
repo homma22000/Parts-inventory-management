@@ -1,3 +1,12 @@
+<script setup>
+import { itemComposable } from "@/composable/itemComposable.js";
+import { ref } from "vue";
+
+const { items, error, fetchItems } = itemComposable();
+
+fetchItems();
+
+</script>
 <template>
   <h1>部品管理</h1>
   <form id="itemRegisterForm">
@@ -8,6 +17,9 @@
     <button>登録</button>
   </form>
   <hr>
+  <div v-if="error" class="error-message">
+    {{ error }}
+  </div>
   <div>
     <table>
       <thead>
@@ -17,9 +29,9 @@
       </tr>
       </thead>
       <tbody id="itemList">
-      <tr>
-        <td></td>
-        <td></td>
+      <tr v-for="item in items" :key="item.code">
+        <td>{{ item.code }}</td>
+        <td>{{ item.name }}</td>
       </tr>
       </tbody>
     </table>
