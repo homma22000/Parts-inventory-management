@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <main>
+      <section id="itemDetailPage">
+        <div>
+          <h2></h2>
+        </div>
+        <div>
+          <table>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>区分</th>
+              <th>日時</th>
+              <th>数量</th>
+              <th>備考</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+  </div>
+</template>
