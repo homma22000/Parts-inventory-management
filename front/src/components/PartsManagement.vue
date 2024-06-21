@@ -1,6 +1,5 @@
 <script setup>
 import { itemComposable } from "@/composable/itemComposable.js";
-import { ref } from "vue";
 
 const { items, error, fetchItems } = itemComposable();
 
