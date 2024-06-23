@@ -12,6 +12,7 @@ import java.util.List;
 public interface ItemMapper {
 
     // 部品の一件取得
+    @Select("select code, name from items where code=#{code}")
     Item findByCode(String code);
 
     // 部品の全件取得
