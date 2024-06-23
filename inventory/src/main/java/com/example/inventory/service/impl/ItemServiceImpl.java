@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class ItemServiceImpl implements ItemService {
 
     private final ItemMapper itemMapper;
@@ -26,11 +25,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Item> getAll() {
         return itemMapper.findAll();
     }
 
     @Override
+    @Transactional
     public String register(Item item) throws ItemCodeDuplicateException {
         itemMapper.insert(item);
         return item.getCode();
