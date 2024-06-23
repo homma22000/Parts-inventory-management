@@ -19,6 +19,7 @@ public interface ItemMapper {
     @Select("select code, name from items order by code")
     List<Item> findAll();
 
+    // 部品の一件登録
     @Insert("insert into items(code, name) values(#{code}, #{name})")
     int insert(Item item);
 
