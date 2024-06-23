@@ -27,9 +27,8 @@ public class ItemController {
     }
 
 
-    public Item getByCode(@PathVariable String code) {
-        return null;
-    }
+    @GetMapping("/{code}")
+    public Item getByCode(@PathVariable String code) { return itemService.getByCode(code); }
 
     @GetMapping
     public List<Item> getAll() {

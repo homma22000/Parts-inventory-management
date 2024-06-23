@@ -20,8 +20,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Item getByCode(String code) throws NoSuchItemException {
-        return null;
+        if (itemMapper.findByCode(code) == null) {
+            throw new NoSuchItemException();
+        }
+        return itemMapper.findByCode(code);
     }
 
     @Override
@@ -33,6 +37,9 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional
     public String register(Item item) throws ItemCodeDuplicateException {
+        if(itemMapper.findByCode(item.getCode()) != null){
+            throw new ItemCodeDuplicateException();
+        }
         itemMapper.insert(item);
         return item.getCode();
     }
