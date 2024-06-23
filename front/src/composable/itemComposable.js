@@ -38,10 +38,28 @@ export function itemComposable() {
         }
     };
 
+    // 部品の1件取得
+    const fetchItem = async (code) => {
+        try {
+            const response = await fetch(`${baseUrl}/api/items/${code}`, {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.status === 404) throw new Error('指定した部品コードのリソースが存在しない');
+            if (!response.ok) throw new Error(`Error: ${response.status}`);
+            item.value = await response.json();
+        } catch (err) {
+            error.value = err.message;
+            throw err;
+        }
+    };
+
     return {
         items,
         error,
         fetchItems,
+        fetchItem,
         createItem
     }
 
