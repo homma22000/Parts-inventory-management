@@ -12,3 +12,10 @@ INSERT INTO items(code, name) VALUES('10130', '点火プラグ');
 INSERT INTO items(code, name) VALUES('10140', 'オー・リング');
 INSERT INTO items(code, name) VALUES('10150', 'クランプ');
 INSERT INTO items(code, name) VALUES('10160', 'スクリュー');
+
+INSERT INTO inventory_transactions (type, date_time, item_code, quantity, description) VALUES ('RECEIPT', '2024-06-17 10:00:00', '10010', 50, 'test');
+INSERT INTO inventory_transactions (type, date_time, item_code, quantity, description) VALUES ('RECEIPT', '2024-06-17 10:00:00', '10020-A', 20, 'test');
+INSERT INTO inventory_transactions (type, date_time, item_code, quantity, description) VALUES ('RECEIPT', '2024-06-17 10:00:00', '10020-B', 20, 'test');
+INSERT INTO inventory_transactions (type, date_time, item_code, quantity, description) VALUES ('RECEIPT', '2024-06-17 10:00:00', '10020-A', 10, 'test');
+INSERT INTO inventory_transactions (type, date_time, item_code, quantity, description) VALUES ('RECEIPT', '2024-06-17 10:00:00', '10020-B', 10, 'test');
+INSERT INTO inventory_transactions (type, date_time, item_code, quantity, description) VALUES ('ISSUE', '2024-06-17 10:00:00', '10010', -30, NULL);
