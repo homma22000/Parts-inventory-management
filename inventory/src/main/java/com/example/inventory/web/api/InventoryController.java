@@ -18,7 +18,7 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     }
     @GetMapping
-    public List<Inventory> findAll() {
-        return inventoryService.findAll();
+    public List<Inventory> getAll() {
+        return inventoryService.getAll();
     }
 }

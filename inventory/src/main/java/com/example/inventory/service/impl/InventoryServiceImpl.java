@@ -18,7 +18,7 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Inventory> findAll() {
+    public List<Inventory> getAll() {
         return inventoryMapper.findAll();
     }
 }
