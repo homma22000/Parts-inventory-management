@@ -1,3 +1,10 @@
+<script setup>
+import { inventoryComposable } from "@/composable/inventoryComposable.js";
+
+const { inventories, error, fetchInventories } = inventoryComposable();
+
+fetchInventories();
+</script>
 <template>
   <h1>在庫管理</h1>
   <section id="itemPage">
@@ -16,6 +23,9 @@
       <button>登録</button>
     </form>
     <hr>
+    <div v-if="error" class="error-message">
+      {{ error }}
+    </div>
     <div>
       <table>
         <thead id="itemListHeader">
@@ -26,54 +36,13 @@
         </tr>
         </thead>
         <tbody id="itemList">
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="inventory in inventories" :key="inventory.code">
+          <td>{{ inventory.code }}</td>
+          <td>{{ inventory.name }}</td>
+          <td>{{ inventory.quantity }}</td>
         </tr>
         </tbody>
       </table>
     </div>
   </section>
 </template>
-
-<style scoped>
-.suggestions {
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  background-color: white;
-  position: absolute;
-  width: calc(100% - 22px); /* Adjust width to match the input field */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  margin-top: 5px;
-  padding: 0;
-  list-style-type: none;
-}
-
-.suggestions li {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.suggestions li:hover {
-  background-color: #f0f0f0;
-}
-
-.suggestions li:nth-child(even) {
-  background-color: #fafafa;
-}
-
-.suggestions li:nth-child(odd) {
-  background-color: #fff;
-}
-
-#itemNameField {
-  width: 30%;
-  box-sizing: border-box;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-</style>
