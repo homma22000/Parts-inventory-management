@@ -41,7 +41,7 @@ public class ItemController {
         itemService.register(item);
 
         // Locationヘッダーの設定
-        URI location = URI.create(String.format("http://localhost:8080/api/items/%d", item.getCode()));
+        URI location = URI.create(String.format("http://localhost:8080/api/items/%s", item.getCode()));
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(location);
 
