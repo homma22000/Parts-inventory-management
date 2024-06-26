@@ -1,10 +1,13 @@
 <script setup>
-import { inventoryComposable } from "@/composable/inventoryComposable.js";
 import { ref, computed } from "vue";
-import {itemComposable} from "@/composable/itemComposable.js";
+import { itemComposable } from "@/composable/itemComposable.js";
+import { inventoryComposable } from "@/composable/inventoryComposable.js";
+import { transactionComposable } from "@/composable/transactionComposable.js";
 
-const { items, fetchItems } = itemComposable()
+const { items, fetchItems } = itemComposable();
 const { inventories, error, fetchInventories } = inventoryComposable();
+const { createTransaction } = transactionComposable()
+
 const newTransaction = ref({
   item: {
     code: '',
@@ -14,6 +17,7 @@ const newTransaction = ref({
   quantity: '',
   description: ''
 });
+
 const nameMatchCode = computed(() => {
   const match = items.value.find(item => item.code.toLowerCase() === newTransaction.value.item.code.toLowerCase());
   if (match) {
@@ -21,6 +25,24 @@ const nameMatchCode = computed(() => {
   }
   return '';
 });
+const registerInventory = async () => {
+  try {
+    error.value = null;
+    if ("ISSUE" == newTransaction.value.type) {
+      newTransaction.value.quantity *= -1;
+    }
+    await createTransaction(newTransaction.value);
+  } catch (err) {
+    error.value = err.message;
+  }
+  finally {
+    newTransaction.value.item.code = '';
+    newTransaction.value.item.name = '';
+    newTransaction.value.type = '';
+    newTransaction.value.quantity = '';
+    newTransaction.value.description = '';
+  }
+};
 
 fetchItems()
 fetchInventories();
@@ -28,7 +50,7 @@ fetchInventories();
 <template>
   <h1>在庫管理</h1>
   <section id="itemPage">
-    <form id="itemRegisterForm" >
+    <form id="itemRegisterForm" @submit.prevent="registerInventory">
       <label for="itemCode">コード</label>
       <input id="itemCodeField" type="text" list="codeDatalist" v-model="newTransaction.item.code">
       <label for="itemName">名称</label>
