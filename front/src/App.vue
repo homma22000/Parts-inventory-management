@@ -72,4 +72,12 @@ nav#mainMenu {
   gap: 1rem;
   margin-top: 1rem;
 }
+
+#itemNameField {
+  width: 30%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>>

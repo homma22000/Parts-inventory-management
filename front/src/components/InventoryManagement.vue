@@ -61,7 +61,7 @@ fetchInventories();
         <option value="ISSUE">出庫</option>
       </select>
       <label for="itemQuantity">数量</label>
-      <input id="itemQuantityField" type="number" v-model="newTransaction.quantity" required>
+      <input id="itemQuantityField" type="number" v-model="newTransaction.quantity" min="0" required>
       <button>登録</button>
     </form>
     <datalist id="codeDatalist">
