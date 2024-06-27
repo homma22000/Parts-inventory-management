@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/transactions")
@@ -18,6 +19,12 @@ public class TransactionController {
 
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Transaction>> findAll(@RequestParam String itemCode) {
+        List<Transaction> transactions = transactionService.getAll(itemCode);
+        return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
 
     @PostMapping

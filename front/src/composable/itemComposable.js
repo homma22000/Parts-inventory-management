@@ -57,6 +57,7 @@ export function itemComposable() {
 
     return {
         items,
+        item,
         error,
         fetchItems,
         fetchItem,

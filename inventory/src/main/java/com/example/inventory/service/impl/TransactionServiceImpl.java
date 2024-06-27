@@ -9,6 +9,8 @@ import com.example.inventory.service.TransactionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -16,6 +18,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     public TransactionServiceImpl(TransactionMapper transactionMapper) {
         this.transactionMapper = transactionMapper;
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Transaction> getAll(String itemCode) {
+        return transactionMapper.findAll(itemCode);
     }
 
     @Override
