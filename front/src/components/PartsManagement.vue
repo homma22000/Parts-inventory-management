@@ -48,7 +48,7 @@ const registerParts = async () => {
       <tbody id="itemList">
       <tr v-for="item in items" :key="item.code">
         <td>{{ item.code }}</td>
-        <td>{{ item.name }}</td>
+        <td><RouterLink :to="{ name: 'item-detail', params: { code: item.code } }">{{ item.name }}</RouterLink></td>
       </tr>
       </tbody>
     </table>

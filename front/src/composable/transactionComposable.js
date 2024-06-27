@@ -8,6 +8,27 @@ export function transactionComposable() {
     const transaction = ref(null);
     const error = ref(null);
 
+    // 在庫取引一覧の取得
+    const fetchTransactions = async (itemCode) => {
+        try {
+            const url = new URL(`${baseUrl}/api/transactions`);
+            if (itemCode) {
+                url.searchParams.append('itemCode', itemCode);
+            }
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (!response.ok) throw new Error(`Error: ${response.status}`);
+            transactions.value = await response.json();
+        } catch (err) {
+            error.value = err.message;
+            throw err;
+        }
+    };
+
+
     // 在庫取引の1件登録
     const createTransaction = async (newTransaction) => {
         try {
@@ -30,6 +51,8 @@ export function transactionComposable() {
     };
 
     return {
-        createTransaction,
+        transactions,
+        fetchTransactions,
+        createTransaction
     }
 }
