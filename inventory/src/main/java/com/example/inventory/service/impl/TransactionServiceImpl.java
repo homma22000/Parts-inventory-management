@@ -14,14 +14,27 @@ public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionMapper transactionMapper;
 
-
     public TransactionServiceImpl(TransactionMapper transactionMapper) {
         this.transactionMapper = transactionMapper;
     }
 
     @Override
     @Transactional
-    public void register(Transaction transaction) throws NoSuchItemException {
+    public void register(Transaction transaction) throws NoSuchItemException, InventoryQuantityShortageException {
+
+        if ("ISSUE".equals(transaction.getType())) {
+            int currentQuantity = getCurrentQuantity(transaction.getItem().getCode());
+            if (currentQuantity + transaction.getQuantity() < 0) {
+                throw new InventoryQuantityShortageException(currentQuantity, transaction.getQuantity());
+            }
+        }
+
         transactionMapper.insert(transaction);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public int getCurrentQuantity(String itemCode) {
+        return transactionMapper.getCurrentQuantity(itemCode);
     }
 }

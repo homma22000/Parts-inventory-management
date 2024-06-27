@@ -11,4 +11,7 @@ public interface TransactionMapper {
     @Insert("insert into inventory_transactions(type, date_time, item_code, quantity, description)" +
             " values(#{type}, #{dateTime}, #{item.code}, #{quantity}, #{description})")
     int insert(Transaction transaction);
+
+    @Select("select sum(quantity) from inventory_transactions where item_code = #{itemCode}")
+    int getCurrentQuantity(String itemCode);
 }
