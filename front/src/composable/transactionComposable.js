@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { inventoryComposable} from "@/composable/inventoryComposable.js";
+import { inventoryComposable } from "@/composable/inventoryComposable.js";
 const { fetchInventories } = inventoryComposable();
 
 export function transactionComposable() {
@@ -25,11 +25,11 @@ export function transactionComposable() {
             error.value = err.message;
             throw err;
         } finally {
-            await fetchInventories();
+            fetchInventories();
         }
     };
 
     return {
-        createTransaction
+        createTransaction,
     }
 }
