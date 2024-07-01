@@ -44,7 +44,7 @@ const registerInventory = async () => {
   }
 };
 
-fetchItems()
+fetchItems();
 fetchInventories();
 </script>
 <template>
