@@ -22,7 +22,7 @@ public class TransactionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Transaction>> findAll(@RequestParam String itemCode) {
+    public ResponseEntity<List<Transaction>> getAll(@RequestParam String itemCode) {
         List<Transaction> transactions = transactionService.getAll(itemCode);
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
