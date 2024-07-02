@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { inventoryComposable } from "@/composable/inventoryComposable.js";
 const { fetchInventories } = inventoryComposable();
 
-export function itemComposable() {
+export function stocktakingComposable() {
     const baseUrl = 'http://localhost:8080';
     const stocktakings = ref([]);
     const stocktaking = ref(null);
@@ -27,12 +27,11 @@ export function itemComposable() {
         finally{
             fetchInventories();
         }
-
-        return {
-            stocktakings,
-            stocktaking,
-            error,
-            createStocktakings
-        }
     };
+    return {
+        stocktakings,
+        stocktaking,
+        error,
+        createStocktakings
+    }
 }
