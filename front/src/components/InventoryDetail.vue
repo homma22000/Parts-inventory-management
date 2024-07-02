@@ -7,6 +7,12 @@ const { inventories, error, fetchInventories } = inventoryComposable();
 const { createStocktakings } = stocktakingComposable();
 const transactions = ref([]);
 
+const loadInventories = async () => {
+  inventories.value.forEach(inventory => {
+    inventory.actualStock = inventory.quantity;
+  });
+};
+
 const registerInventoryQuantity = async () => {
   try {
     error.value = null;
@@ -31,11 +37,13 @@ const registerInventoryQuantity = async () => {
     error.value = err.message;
   } finally {
     await fetchInventories();
+    await loadInventories();
   }
 };
 
 onMounted( async () => {
   await fetchInventories();
+  await loadInventories();
 });
 
 </script>
@@ -65,8 +73,8 @@ onMounted( async () => {
           <td>{{ inventory.name }}</td>
           <td>{{ inventory.quantity }}</td>
           <td><input type="number" name="actualStock" min="0" v-model="inventory.actualStock"></td>
-          <td></td>
-          <td><input type="text" name="remarks" v-model="inventory.description"></td>
+          <td >{{ inventory.actualStock - inventory.quantity }}</td>
+          <td><input type="text" name="remarks" v-model="inventory.description" :required="inventory.actualStock !== inventory.quantity"></td>
         </tr>
       </table>
     </div>
