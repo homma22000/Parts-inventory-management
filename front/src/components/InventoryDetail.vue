@@ -66,7 +66,7 @@ onMounted( async () => {
           <td>{{ inventory.quantity }}</td>
           <td><input type="number" name="actualStock" min="0" v-model="inventory.actualStock"></td>
           <td></td>
-          <td><input type="text" name="remarks" v-model="inventory.description" :required="inventory.actualStock !== inventory.quantity"></td>
+          <td><input type="text" name="remarks" v-model="inventory.description"></td>
         </tr>
       </table>
     </div>
