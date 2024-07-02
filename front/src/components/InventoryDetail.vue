@@ -1,11 +1,53 @@
+<script setup>
+import { inventoryComposable } from "@/composable/inventoryComposable.js";
+import { stocktakingComposable } from "@/composable/stocktakingComposable.js";
+import { onMounted, ref } from 'vue';
+
+const { inventories, error, fetchInventories } = inventoryComposable();
+const { createStocktakings } = stocktakingComposable();
+const transactions = ref([]);
+
+const registerInventoryQuantity = async () => {
+  try {
+    error.value = null;
+    transactions.value = [];
+
+    for (const inventory of inventories.value) {
+      const newTransaction = {
+        item: {
+          code: inventory.code,
+          name: inventory.name
+        },
+        type: 'ADJUST',
+        quantity: inventory.actualStock - inventory.quantity,
+        description: inventory.description
+      };
+      if (inventory.actualStock !== inventory.quantity || inventory.description != null){
+        transactions.value.push(newTransaction);
+      }
+    }
+    await createStocktakings(transactions.value);
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    await fetchInventories();
+  }
+};
+
+onMounted( async () => {
+  await fetchInventories();
+});
+
+</script>
 <template>
   <body>
-
   <h1>棚卸</h1>
-
-  <form id="inventoryRegisterForm">
+  <form id="inventoryRegisterForm" @submit.prevent = "registerInventoryQuantity">
     <button>登録</button>
     <hr />
+    <div v-if="error" class="error-message">
+      {{ error }}
+    </div>
     <div>
       <table>
         <thead>
@@ -18,13 +60,13 @@
           <th>備考</th>
         </tr>
         </thead>
-        <tr>
+        <tr v-for="inventory in inventories" :key="inventory.code">
+          <td>{{ inventory.code }}</td>
+          <td>{{ inventory.name }}</td>
+          <td>{{ inventory.quantity }}</td>
+          <td><input type="number" name="actualStock" min="0" v-model="inventory.actualStock"></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td><input type="number" name="actualStock" min="0"></td>
-          <td></td>
-          <td><input type="text" name="remarks" required></td>
+          <td><input type="text" name="remarks" v-model="inventory.description" :required="inventory.actualStock !== inventory.quantity"></td>
         </tr>
       </table>
     </div>
