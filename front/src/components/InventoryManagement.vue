@@ -41,6 +41,7 @@ const registerInventory = async () => {
     newTransaction.value.type = '';
     newTransaction.value.quantity = '';
     newTransaction.value.description = '';
+    await fetchInventories();
   }
 };
 
